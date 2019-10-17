@@ -4,7 +4,23 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
+
+func TestIndexHandler(t *testing.T) {
+	req, err := http.NewRequest("GET", "/", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(indexHandler)
+	handler.ServeHTTP(rr, req)
+
+	assert.Equal(t, http.StatusOK, rr.Code)
+	assert.Equal(t, "hello, world!", rr.Body.String())
+}
 
 func TestFooHandler(t *testing.T) {
 	req, err := http.NewRequest("GET", "/foo", nil)
@@ -13,24 +29,9 @@ func TestFooHandler(t *testing.T) {
 	}
 
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(fooHandler)
+	handler := http.HandlerFunc(FooHandler)
 	handler.ServeHTTP(rr, req)
 
-	if status := rr.Code; status != http.StatusOK {
-		t.Errorf(
-			"unexpected status: got (%v) want (%v)",
-			status,
-			http.StatusOK,
-		)
-	}
-
-	expected := "bar"
-	if rr.Body.String() != expected {
-		t.Errorf(
-			"unexpected body: got (%v) want (%v)",
-			rr.Body.String(),
-			"Hello, World!",
-		)
-	}
-
+	assert.Equal(t, http.StatusOK, rr.Code)
+	assert.Equal(t, "bar", rr.Body.String())
 }

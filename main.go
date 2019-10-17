@@ -31,7 +31,8 @@ func echoHandler(w http.ResponseWriter, r *http.Request) {
 	r.Write(w)
 }
 
-func fooHandler(w http.ResponseWriter, r *http.Request) {
+// FooHandler returns "bar"
+func FooHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprintf(w, "bar")
 }
@@ -68,7 +69,7 @@ func main() {
 
 	r.HandleFunc("/", indexHandler)
 	r.HandleFunc("/echo", echoHandler).Methods("GET")
-	r.HandleFunc("/foo", fooHandler).Methods("GET")
+	r.HandleFunc("/foo", FooHandler).Methods("GET")
 	r.HandleFunc("/random", randomHandler).Methods("GET")
 	r.HandleFunc("/secure", secureHandler).Methods("GET").Schemes("https")
 	r.HandleFunc("/ip/{ip}", ipWhoisHandler).Methods("POST")
