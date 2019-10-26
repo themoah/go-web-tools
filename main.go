@@ -37,7 +37,8 @@ func FooHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "bar")
 }
 
-func randomHandler(w http.ResponseWriter, r *http.Request) {
+// RandomHandler returns random float
+func RandomHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Echoing back request made to " + r.URL.Path + " to client (" + r.RemoteAddr + ")")
 	i := rand.Float64()
 	iStr := fmt.Sprintf("%f", i)
@@ -70,9 +71,9 @@ func main() {
 	r.HandleFunc("/", indexHandler)
 	r.HandleFunc("/echo", echoHandler).Methods("GET")
 	r.HandleFunc("/foo", FooHandler).Methods("GET")
-	r.HandleFunc("/random", randomHandler).Methods("GET")
+	r.HandleFunc("/random", RandomHandler).Methods("GET")
 	r.HandleFunc("/secure", secureHandler).Methods("GET").Schemes("https")
-	r.HandleFunc("/ip/{ip}", ipWhoisHandler).Methods("POST")
+	r.HandleFunc("/ip/{ip}", ipWhoisHandler).Methods("GET")
 
 	log.Fatal(http.ListenAndServe("0.0.0.0:"+getServerPort(), r))
 
