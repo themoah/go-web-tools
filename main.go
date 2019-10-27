@@ -13,15 +13,6 @@ import (
 
 const defaultPort = "8080"
 
-func getServerPort() string {
-	port := os.Getenv("SERVER_PORT")
-	if port != "" {
-		return port
-	}
-
-	return defaultPort
-}
-
 func echoHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Println("Echoing back request made to " + r.URL.Path + " to client (" + r.RemoteAddr + ")")
@@ -64,7 +55,13 @@ func ipWhoisHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	log.Println("starting server, listening on port 0.0.0.0:" + getServerPort())
+	serverPort := os.Getenv("PORT")
+	if serverPort == "" {
+		serverPort = defaultPort
+		log.Printf("Defaulting to port %s", serverPort)
+	}
+
+	log.Println("starting server, listening on port 0.0.0.0:" + serverPort)
 
 	r := mux.NewRouter()
 
@@ -75,6 +72,6 @@ func main() {
 	r.HandleFunc("/secure", secureHandler).Methods("GET").Schemes("https")
 	r.HandleFunc("/ip/{ip}", ipWhoisHandler).Methods("GET")
 
-	log.Fatal(http.ListenAndServe("0.0.0.0:"+getServerPort(), r))
+	log.Fatal(http.ListenAndServe("0.0.0.0:"+serverPort, r))
 
 }
