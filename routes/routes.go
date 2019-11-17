@@ -43,8 +43,8 @@ func SecureHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "not implemented yet")
 }
 
-// IpWhoisHandler checks given ipv4 against global whois db
-func IpWhoisHandler(w http.ResponseWriter, r *http.Request) {
+// WhoisHandler checks given ipv4 against global whois db
+func WhoisHandler(w http.ResponseWriter, r *http.Request) {
 	requestParams := mux.Vars(r)
 	ip := requestParams["ip"]
 	log.Println("requested ip: " + ip)

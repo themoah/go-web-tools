@@ -28,7 +28,7 @@ func main() {
 	r.HandleFunc("/foo", routes.FooHandler).Methods("GET")
 	r.HandleFunc("/random", routes.RandomHandler).Methods("GET")
 	r.HandleFunc("/secure", routes.SecureHandler).Methods("GET").Schemes("https")
-	r.HandleFunc("/ip/{ip}", routes.IpWhoisHandler).Methods("GET")
+	r.HandleFunc("/ip/{ip}", routes.WhoisHandler).Methods("GET")
 
 	log.Fatal(http.ListenAndServe("0.0.0.0:"+serverPort, r))
 
