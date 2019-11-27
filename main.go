@@ -24,6 +24,7 @@ func main() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", routes.IndexHandler)
+	r.HandleFunc("/healthz", routes.HealthCheckHanlder).Methods("GET")
 	r.HandleFunc("/echo", routes.EchoHandler).Methods("GET")
 	r.HandleFunc("/foo", routes.FooHandler).Methods("GET")
 	r.HandleFunc("/random", routes.RandomHandler).Methods("GET")
