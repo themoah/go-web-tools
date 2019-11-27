@@ -10,6 +10,12 @@ import (
 	"github.com/likexian/whois-go"
 )
 
+// HealthCheckHanlder returns 200 and body "ok"
+func HealthCheckHanlder(w http.ResponseWriter, r *http.Request) {
+	log.Println("alive :-D")
+	fmt.Fprintf(w, "ok")
+}
+
 // IndexHandler returns hello world
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "hello, world!")
