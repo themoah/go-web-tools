@@ -24,7 +24,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 // EchoHandler blah-blah
 func EchoHandler(w http.ResponseWriter, r *http.Request) {
 
-	log.Println("Echoing back request made to " + r.URL.Path + " to client (" + r.RemoteAddr + ")")
+	log.Println("Echoing back request made to " + r.URL.Path + " by User-Agent: " + r.UserAgent() + ")")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	// allow pre-flight headers
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Range, Content-Disposition, Content-Type, ETag")

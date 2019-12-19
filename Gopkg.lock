@@ -10,6 +10,14 @@
   version = "v1.1.1"
 
 [[projects]]
+  digest = "1:51712f342cdefcad2c867f399a3ce8223675221d4386c81cfcccd8f0656e722e"
+  name = "github.com/go-telegram-bot-api/telegram-bot-api"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "9860bdfd3a171ceafb6e1eafa163482a6ef92643"
+  version = "v4.6.4"
+
+[[projects]]
   digest = "1:cbec35fe4d5a4fba369a656a8cd65e244ea2c743007d8f6c1ccb132acf9d1296"
   name = "github.com/gorilla/mux"
   packages = ["."]
@@ -18,12 +26,12 @@
   version = "v1.7.3"
 
 [[projects]]
-  digest = "1:e149ac50964aae230e4c1c9af196d1edfdebd218cf00b9da96efde7879186020"
+  digest = "1:8673e2aedfb8417f20610592525dcec117ca4d3394ceee351ee31c5605b4a94f"
   name = "github.com/likexian/whois-go"
   packages = ["."]
   pruneopts = "UT"
-  revision = "d5fffb020c655e03ffe9c7f1914ca63c70524354"
-  version = "v1.0.5"
+  revision = "2efe231e8cae60f74395a01ca71979d742f1cf85"
+  version = "v1.3.1"
 
 [[projects]]
   digest = "1:0028cb19b2e4c3112225cd871870f2d9cf49b9b4276531f03438a88e94be86fe"
@@ -42,17 +50,26 @@
   version = "v1.4.0"
 
 [[projects]]
-  digest = "1:59f10c1537d2199d9115d946927fe31165959a95190849c82ff11e05803528b0"
+  digest = "1:420817f94b6c172dabb8a054d0b2d257d7437a87c7c8c7ee432bc008a577fc46"
+  name = "github.com/technoweenie/multipartstreamer"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "a90a01d73ae432e2611d178c18367fbaa13e0154"
+  version = "v1.0.1"
+
+[[projects]]
+  digest = "1:b75b3deb2bce8bc079e16bb2aecfe01eb80098f5650f9e93e5643ca8b7b73737"
   name = "gopkg.in/yaml.v2"
   packages = ["."]
   pruneopts = "UT"
-  revision = "f221b8435cfb71e54062f6c6e99e9ade30b124d5"
-  version = "v2.2.4"
+  revision = "1f64d6156d11335c3f22d9330b0ad14fc1e789ce"
+  version = "v2.2.7"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/go-telegram-bot-api/telegram-bot-api",
     "github.com/gorilla/mux",
     "github.com/likexian/whois-go",
     "github.com/stretchr/testify/assert",
