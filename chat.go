@@ -46,19 +46,20 @@ func handleMsg(update tgbotapi.Update, bot *tgbotapi.BotAPI, userText string) {
 	chatID := update.Message.Chat.ID
 	log.Printf("[%v] %v on %v", update.Message.From.UserName, userText, chatID)
 
-	if userText == "usage" {
+	switch {
+	case userText == "usage":
 		msg := tgbotapi.NewMessage(chatID, printUsage())
 		bot.Send(msg)
-	} else if userText == "foo" {
+	case userText == "foo":
 		msg := tgbotapi.NewMessage(chatID, core.Foo())
 		bot.Send(msg)
-	} else if userText[0:2] == "ip" {
-		msg := tgbotapi.NewMessage(chatID, core.WhoIS(userText[2:]))
-		bot.Send(msg)
-	} else if userText == "random" {
+	case userText == "random":
 		msg := tgbotapi.NewMessage(chatID, core.Random())
 		bot.Send(msg)
-	} else {
+	case userText[0:2] == "ip":
+		msg := tgbotapi.NewMessage(chatID, core.WhoIS(userText[2:]))
+		bot.Send(msg)
+	default:
 		msg := tgbotapi.NewMessage(chatID, userText)
 		msg.ReplyToMessageID = update.Message.MessageID
 		bot.Send(msg)
