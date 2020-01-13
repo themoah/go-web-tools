@@ -21,6 +21,7 @@ func main() {
 
 	log.Println("starting server, listening on port 0.0.0.0:" + serverPort)
 
+	go InitTGBot()
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", routes.IndexHandler)
@@ -29,7 +30,7 @@ func main() {
 	r.HandleFunc("/foo", routes.FooHandler).Methods("GET")
 	r.HandleFunc("/random", routes.RandomHandler).Methods("GET")
 	r.HandleFunc("/secure", routes.SecureHandler).Methods("GET").Schemes("https")
-	r.HandleFunc("/ip/{ip}", routes.WhoisHandler).Methods("GET")
+	r.HandleFunc("/whois/{ip}", routes.WhoisHandler).Methods("GET")
 
 	log.Fatal(http.ListenAndServe("0.0.0.0:"+serverPort, r))
 
